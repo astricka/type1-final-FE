@@ -33,7 +33,7 @@ const AddUser = () => {
         initialValues: { ...initInputs },
         validationSchema: Yup.object({
             name: Yup.string().min(3).max(30).required(),
-            age: Yup.string().max(150).required(),
+            age: Yup.string().max(3).required(),
             email: Yup.string().email().required(),
             password: Yup.string().min(5).required(),
         }),
@@ -46,13 +46,11 @@ const AddUser = () => {
         const data = await postFetch(values);
 
         if (data.error) {
-            // err
             setResponse(data.error);
             toast.error('Please check the form');
         }
         if (data.message) {
-            // success data.data
-            toast.success('form sent');
+            toast.success(data.message);
             setFormSentSuccess(true);
         }
     }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getFetchData } from '../utils/fetch';
 import { toast } from 'react-hot-toast';
 import AddUser from './AddUser';
+import { NavLink } from 'react-router-dom';
 
 const MainSection = () => {
     const [data, setData] = useState([]);
@@ -12,8 +13,6 @@ const MainSection = () => {
     }
 
     useEffect( () => {
-
-
         fetchData();
     }, []);
 
@@ -24,7 +23,6 @@ const MainSection = () => {
                 'Content-Type': 'application/json'
             },
         });
-
         const deleteData = await resp.json();
 
         if (deleteData.message === "User was deleted successfully!") {
@@ -33,16 +31,20 @@ const MainSection = () => {
 
         toast.success(deleteData.message);
         console.log(deleteData);
-
-
     }
-
 
     return (
         <div>
             <ul>
                 {data.map((item) => (
-                    <li key={item._id}>{item.name}{item.age}{item.email}{item.password}<button type={'button'} onClick={(e) => handleDelete(item._id)}>Del</button></li>
+                    <li
+                        key={item._id}>
+                        {item.name}{item.age}
+                        {item.email}
+                        {item.password}
+                        <button type={'button'} onClick={(e) => handleDelete(item._id)}>Del</button>
+                        <NavLink to={`/updateUser/${item._id}`}>Update user</NavLink>
+                    </li>
                 ))}
             </ul>
             <AddUser />
