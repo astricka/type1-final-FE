@@ -1,8 +1,8 @@
 const baseUrl = 'http://localhost:7000/api/users';
 
-export async function postFetch(url, dataToSend) {
+export async function postFetch(dataToSend) {
     try {
-        const resp = await fetch(url, {
+        const resp = await fetch(`${baseUrl}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,7 +26,6 @@ export async function getFetchData() {
             },
         });
         const data = await resp.json();
-        // console.log('data ===', data);
         return data;
     } catch (error) {
         console.log('getFetchData catch block error', error);
