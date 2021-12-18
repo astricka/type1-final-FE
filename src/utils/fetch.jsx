@@ -9,7 +9,6 @@ export async function postFetch(dataToSend) {
             },
             body: JSON.stringify(dataToSend),
         });
-
         const data = await resp.json();
         return data;
     } catch (error) {

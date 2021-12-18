@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getFetchData } from '../utils/fetch';
 import { toast } from 'react-hot-toast';
+import AddUser from './AddUser';
 
 const MainSection = () => {
     const [data, setData] = useState([]);
@@ -44,6 +45,7 @@ const MainSection = () => {
                     <li key={item._id}>{item.name}{item.age}{item.email}{item.password}<button type={'button'} onClick={(e) => handleDelete(item._id)}>Del</button></li>
                 ))}
             </ul>
+            <AddUser />
         </div>
     );
 };
