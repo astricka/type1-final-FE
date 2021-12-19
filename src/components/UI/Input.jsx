@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './Input.module.css';
 
 const Input = ({type, error, ...rest }) => {
     return (
@@ -7,7 +8,7 @@ const Input = ({type, error, ...rest }) => {
                 {...rest}
                 type={type}
             />
-            {error && <span>{error}</span>}
+            {error && <span className={css.inputError}>{error}</span>}
         </div>
     );
 };

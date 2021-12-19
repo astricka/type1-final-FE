@@ -10,10 +10,10 @@ import Button from './UI/Button';
 import css from './AddUser.module.css';
 
 const formFields = [
-    { name: 'name', placeholder: 'Jūsų vardas' },
-    { name: 'age', placeholder: 'Jūsų amžius' },
-    { name: 'email', placeholder: 'Jūsų elektroninis paštas' },
-    { name: 'password', placeholder: 'Jūsų slaptažodis' },
+    { name: 'name', placeholder: 'Jūsų vardas', type: 'text' },
+    { name: 'age', placeholder: 'Jūsų amžius', type: 'text' },
+    { name: 'email', placeholder: 'Jūsų elektroninis paštas', type: 'text' },
+    { name: 'password', placeholder: 'Jūsų slaptažodis', type: 'password' },
 ];
 
 const initInputs = {
@@ -26,7 +26,7 @@ const initInputs = {
 const AddUser = () => {
     const history = useHistory();
     const [response, setResponse] = useState([]);
-    const [formSentSuccess, setFormSentSuccess] = useState(false);
+    // const [formSentSuccess, setFormSentSuccess] = useState(false);
 
     useEffect(() => {
         const errorObj = responseToError(response);
@@ -59,14 +59,14 @@ const AddUser = () => {
         }
         if (data.message) {
             toast.success(data.message);
-            setFormSentSuccess(true);
+            // setFormSentSuccess(true);
         }
     }
 
     return (
         <div className={css.addUserContainer}>
             <form onSubmit={formik.handleSubmit}>
-                {formFields.map(({name, placeholder}) => (
+                {formFields.map(({type,name, placeholder}) => (
                     <Input
                         key={name}
                         value={formik.values[name]}
@@ -75,6 +75,7 @@ const AddUser = () => {
                         name={name}
                         placeholder={placeholder}
                         error={formik.touched[name] && formik.errors[name]}
+                        type={type}
                     />
                 ))}
                 <Button type={'submit'}>Submit</Button>

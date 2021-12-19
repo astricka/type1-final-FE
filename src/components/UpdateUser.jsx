@@ -49,7 +49,6 @@ const UpdateUser = () => {
             name: Yup.string().min(3).max(30),
             age: Yup.string().max(3),
             email: Yup.string().email(),
-            password: Yup.string().min(5),
         }),
         onSubmit: (values) => {
             handleUpdate(values);
