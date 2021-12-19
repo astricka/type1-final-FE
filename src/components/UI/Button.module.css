@@ -4,12 +4,11 @@
     color: white;
     border: 1px solid #1652F0;
     border-radius: 5px;
-    font-size: 20px;
-    padding: 10px 10px;
 }
 
 .buttonStyled:hover {
     background-color: #0A46E4;
     border-color: #0A46E4;
     transition: ease-in 0.3s;
+    color: #a3bdcb;
 }

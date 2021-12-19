@@ -1,0 +1,30 @@
+.mainSectionContainer {
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.linkStyled {
+    text-decoration: none;
+    color: #1652F0;
+    margin-left: 10px;
+}
+
+.listContainer {
+    display: flex;
+    flex-flow: column;
+    list-style-type: decimal-leading-zero;
+}
+
+.listContainer li {
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.listContainer li:nth-child(2n) {
+    background-color: #a3bdcb;
+}
+
+.iconsContainer i {
+    font-size: 2rem;
+}

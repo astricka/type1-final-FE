@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getFetchData } from '../utils/fetch';
 import { toast } from 'react-hot-toast';
-import AddUser from './AddUser';
 import { NavLink } from 'react-router-dom';
+import Button from './UI/Button';
+import css from './MainSection.module.css';
+import Icon from './UI/Icon';
 
 const MainSection = () => {
     const [data, setData] = useState([]);
@@ -39,20 +41,21 @@ const MainSection = () => {
     }
 
     return (
-        <div>
-            <ul>
+        <div className={css.mainSectionContainer}>
+            <ul className={css.listContainer}>
                 {data.map((item) => (
                     <li
                         key={item._id}>
-                        {item.name}{item.age}
+                        {item.name}
+                        {item.age}
                         {item.email}
-                        {item.password}
-                        <button type={'button'} onClick={(e) => handleDelete(item._id)}>Del</button>
-                        <NavLink to={`/updateUser/${item._id}`}>Update user</NavLink>
+                        <div className={css.iconsContainer}>
+                            <Button type={'button'} onClick={(e) => handleDelete(item._id)}><Icon name={'fa-trash'} /></Button>
+                            <NavLink className={css.linkStyled} to={`/updateUser/${item._id}`}><Icon name={'fa-pencil'} /></NavLink>
+                        </div>
                     </li>
                 ))}
             </ul>
-            <NavLink to={'/addUser'}>Add user</NavLink>
         </div>
     );
 };

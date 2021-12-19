@@ -19,6 +19,9 @@ function App() {
             <Route exact path={'/'}>
                 <HomePage />
             </Route>
+            <Route path='*'>
+                <h2>Page does not exist</h2>
+            </Route>
         </Switch>
     </div>
   );
