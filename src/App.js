@@ -3,12 +3,16 @@ import HomePage from './pages/HomePage';
 import { Toaster } from 'react-hot-toast';
 import { Switch, Route } from 'react-router-dom';
 import UpdatePage from './pages/UpdatePage';
+import AddUserPage from './pages/AddUserPage';
 
 function App() {
   return (
     <div className="App">
         <Toaster />
         <Switch>
+            <Route path={'/addUser'}>
+                <AddUserPage />
+            </Route>
             <Route path={'/updateUser/:userId'}>
                 <UpdatePage />
             </Route>

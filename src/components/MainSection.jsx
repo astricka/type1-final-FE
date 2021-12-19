@@ -12,8 +12,13 @@ const MainSection = () => {
         setData(data);
     }
 
+    let isMounted = true;
+
     useEffect( () => {
         fetchData();
+        return () => {
+            setData([])
+        }
     }, []);
 
     async function handleDelete(_id) {
@@ -47,7 +52,7 @@ const MainSection = () => {
                     </li>
                 ))}
             </ul>
-            <AddUser />
+            <NavLink to={'/addUser'}>Add user</NavLink>
         </div>
     );
 };

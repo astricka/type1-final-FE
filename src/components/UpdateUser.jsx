@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Input from './UI/Input';
+import Button from './UI/Button';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import React from 'react';
 
 const formFields = [
-    { name: 'name', placeholder: 'Your name' },
-    { name: 'age', placeholder: 'Your age' },
-    { name: 'email', placeholder: 'Your email' },
-    { name: 'password', placeholder: 'Your password' },
+    { name: 'name', placeholder: 'Jūsų vardas' },
+    { name: 'age', placeholder: 'Jūsų amžius' },
+    { name: 'email', placeholder: 'Jūsų elektroninis paštas' },
+    { name: 'password', placeholder: 'Jūsų slaptažodis' },
 ];
 
 const UpdateUser = () => {
+    const history = useHistory();
     const { userId } = useParams();
     console.log(userId.toString());
-    const [singleUser, setSingleUser] = useState({});
 
     const initInputs = {
         name: '',
@@ -23,29 +24,9 @@ const UpdateUser = () => {
         password: '',
     };
 
-    const initInputs1 = {
-        name: singleUser.name,
-        age: '12',
-        email: 'email@email.com',
-        password: '123456',
-    };
-
-    useEffect(() => {
-        async function getSingleUser() {
-            const resp = await fetch(`http://localhost:7000/api/users?id=${userId}`);
-            const data = await resp.json();
-            setSingleUser(data);
-            console.log(data);
-        }
-        getSingleUser();
-    }, []);
-
     const formik = useFormik({
         initialValues: {
-            name: '',
-            age: '',
-            email: '',
-            password: '',
+            ...initInputs
         },
         enableReinitialize: true,
         validationSchema: Yup.object({
@@ -74,20 +55,20 @@ const UpdateUser = () => {
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
-                {formFields.map(({name, placeHolder}) => (
+                {formFields.map(({name, placeholder}) => (
                     <Input
                         key={name}
                         value={formik.values[name]}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         name={name}
-                        placeholder={placeHolder}
+                        placeholder={placeholder}
                         error={formik.touched[name] && formik.errors[name]}
                     />
                 ))}
-                <button type={'submit'}>submit</button>
+                <Button type={'subit'}>Submit</Button>
             </form>
-
+            <Button onClick={() => history.goBack()}>Go back</Button>
         </div>
     );
 };

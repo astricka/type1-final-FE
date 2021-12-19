@@ -5,12 +5,14 @@ import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
 import Input from './UI/Input';
 import { toast } from 'react-hot-toast';
+import { useHistory } from 'react-router-dom';
+import Button from './UI/Button';
 
 const formFields = [
-    { name: 'name', placeholder: 'Your name' },
-    { name: 'age', placeholder: 'Your age' },
-    { name: 'email', placeholder: 'Your email' },
-    { name: 'password', placeholder: 'Your password' },
+    { name: 'name', placeholder: 'Jūsų vardas' },
+    { name: 'age', placeholder: 'Jūsų amžius' },
+    { name: 'email', placeholder: 'Jūsų elektroninis paštas' },
+    { name: 'password', placeholder: 'Jūsų slaptažodis' },
 ];
 
 const initInputs = {
@@ -21,13 +23,17 @@ const initInputs = {
 };
 
 const AddUser = () => {
+    const history = useHistory();
     const [response, setResponse] = useState([]);
     const [formSentSuccess, setFormSentSuccess] = useState(false);
 
     useEffect(() => {
         const errorObj = responseToError(response);
         formik.setErrors(errorObj);
-    }, [response]);
+        return () => {
+             return errorObj;
+        }
+    }, []);
 
     const formik = useFormik({
         initialValues: { ...initInputs },
@@ -69,8 +75,9 @@ const AddUser = () => {
                         error={formik.touched[name] && formik.errors[name]}
                     />
                 ))}
-                <button type={'submit'}>Submit</button>
+                <Button type={'submit'}>Submit</Button>
             </form>
+            <Button onClick={() => history.goBack()}>Go back</Button>
         </div>
     );
 };
