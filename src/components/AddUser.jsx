@@ -7,6 +7,7 @@ import Input from './UI/Input';
 import { toast } from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
 import Button from './UI/Button';
+import css from './AddUser.module.css';
 
 const formFields = [
     { name: 'name', placeholder: 'Jūsų vardas' },
@@ -16,10 +17,10 @@ const formFields = [
 ];
 
 const initInputs = {
-    name: "dwayyne the rock johson",
-    age: "11",
-    email: "aaaaaa@b.com",
-    password: "aaa@.bbb.com",
+    name: "",
+    age: "",
+    email: "",
+    password: "",
 };
 
 const AddUser = () => {
@@ -62,22 +63,22 @@ const AddUser = () => {
     }
 
     return (
-        <div>
+        <div className={css.addUserContainer}>
             <form onSubmit={formik.handleSubmit}>
-                {formFields.map(({name, placeHolder}) => (
+                {formFields.map(({name, placeholder}) => (
                     <Input
                         key={name}
                         value={formik.values[name]}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         name={name}
-                        placeholder={placeHolder}
+                        placeholder={placeholder}
                         error={formik.touched[name] && formik.errors[name]}
                     />
                 ))}
                 <Button type={'submit'}>Submit</Button>
+                <Button onClick={() => history.goBack()}>Go back</Button>
             </form>
-            <Button onClick={() => history.goBack()}>Go back</Button>
         </div>
     );
 };

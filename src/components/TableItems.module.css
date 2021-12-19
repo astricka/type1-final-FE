@@ -1,0 +1,33 @@
+.iconContainer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.iconContainer i {
+    font-size: 20px;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.iconContainer:nth-child(2n) {
+     background-color: grey;
+}
+
+.iconContainer i:hover {
+    background-color: black;
+    color: white;
+    transition: ease-in 0.3s;
+}
+
+.iconContainer div {
+    display: flex;
+    width: 50px;
+    justify-content: space-around;
+    margin-left: 10px;
+}
+
+.links {
+
+}
+

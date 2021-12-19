@@ -1,0 +1,20 @@
+.addUserContainer {
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.addUserContainer input {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 0.5rem;
+}
+
+.addUserContainer button {
+    color: black;
+    margin: 10px;
+    text-transform: uppercase;
+}
+

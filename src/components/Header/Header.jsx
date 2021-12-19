@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import css from '../MainSection.module.css';
+import css from './Header.module.css'
 
 const Header = () => {
     return (
-        <div>
-            <nav>
+        <div className={css.headerContainer}>
+            <img className={css.logo} src="usersTransparent.png" alt=""/>
+            <nav className={css.linksContainer}>
                 <NavLink className={css.linkStyled} to={'/addUser'}>Add user</NavLink>
-                <NavLink to={'/'}></NavLink>
+                <NavLink className={css.linkStyled} to={'/'}>Home</NavLink>
             </nav>
         </div>
     );

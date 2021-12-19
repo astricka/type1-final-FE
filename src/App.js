@@ -4,11 +4,13 @@ import { Toaster } from 'react-hot-toast';
 import { Switch, Route } from 'react-router-dom';
 import UpdatePage from './pages/UpdatePage';
 import AddUserPage from './pages/AddUserPage';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className="App">
         <Toaster />
+        <Header />
         <Switch>
             <Route path={'/addUser'}>
                 <AddUserPage />

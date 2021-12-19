@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './Icon.module.css';
 
 const Icon = ({name}) => {
     return (

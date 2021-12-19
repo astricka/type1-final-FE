@@ -1,0 +1,14 @@
+.iconStyled {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.iconStyled:hover {
+    background-color: white;
+    border-color: white;
+    transition: ease-in 0.3s;
+    color: black;
+}

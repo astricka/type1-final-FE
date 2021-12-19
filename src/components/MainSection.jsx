@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getFetchData } from '../utils/fetch';
 import { toast } from 'react-hot-toast';
-import { NavLink } from 'react-router-dom';
-import Button from './UI/Button';
 import css from './MainSection.module.css';
-import Icon from './UI/Icon';
+import TableItems from './TableItems';
 
 const MainSection = () => {
     const [data, setData] = useState([]);
@@ -16,11 +14,11 @@ const MainSection = () => {
 
     let isMounted = true;
 
-    useEffect( () => {
+    useEffect(() => {
         fetchData();
         return () => {
-            setData([])
-        }
+            setData([]);
+        };
     }, []);
 
     async function handleDelete(_id) {
@@ -32,7 +30,7 @@ const MainSection = () => {
         });
         const deleteData = await resp.json();
 
-        if (deleteData.message === "User was deleted successfully!") {
+        if (deleteData.message === 'User was deleted successfully!') {
             await fetchData();
         }
 
@@ -42,20 +40,26 @@ const MainSection = () => {
 
     return (
         <div className={css.mainSectionContainer}>
-            <ul className={css.listContainer}>
+            <table>
+                <thead>
+                    <tr className={css.tableHeader}>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {data.map((item) => (
-                    <li
-                        key={item._id}>
-                        {item.name}
-                        {item.age}
-                        {item.email}
-                        <div className={css.iconsContainer}>
-                            <Button type={'button'} onClick={(e) => handleDelete(item._id)}><Icon name={'fa-trash'} /></Button>
-                            <NavLink className={css.linkStyled} to={`/updateUser/${item._id}`}><Icon name={'fa-pencil'} /></NavLink>
-                        </div>
-                    </li>
+                    <TableItems
+                        key={item._id}
+                        name={item.name}
+                        age={item.age}
+                        email={item.email}
+                        handleDelete={(e) => handleDelete(item._id)}
+                    />
                 ))}
-            </ul>
+                </tbody>
+            </table>
         </div>
     );
 };
