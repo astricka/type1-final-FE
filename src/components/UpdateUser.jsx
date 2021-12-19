@@ -39,8 +39,6 @@ const UpdateUser = () => {
         setSingleUserData(data);
     }
 
-    const { user = {} } = singleUserData;
-
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
@@ -70,7 +68,6 @@ const UpdateUser = () => {
         if (data.message === 'Success') {
             toast.success('Updated successfully')
         }
-        console.log(data);
     }
 
     return (
