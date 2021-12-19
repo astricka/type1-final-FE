@@ -1,18 +1,18 @@
-.addUserContainer {
-    margin: 100px auto;
+.updateFormContainer {
+    margin: 200px auto;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
-.addUserContainer input {
+.updateFormContainer input {
     border: 1px solid black;
     margin: 10px;
     padding: 0.5rem;
 }
 
-.addUserContainer button {
+.updateFormContainer button {
     cursor: pointer;
     background-color: black;
     border-radius: 5px;
@@ -22,9 +22,8 @@
     text-transform: uppercase;
 }
 
-.addUserContainer button:hover {
+.updateFormContainer button:hover {
     background-color: white;
     color: black;
     transition: ease-in 0.3s;
 }
-

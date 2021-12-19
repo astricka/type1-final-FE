@@ -12,8 +12,6 @@ const MainSection = () => {
         setData(data);
     }
 
-    let isMounted = true;
-
     useEffect(() => {
         fetchData();
         return () => {
@@ -33,9 +31,7 @@ const MainSection = () => {
         if (deleteData.message === 'User was deleted successfully!') {
             await fetchData();
         }
-
         toast.success(deleteData.message);
-        console.log(deleteData);
     }
 
     return (
@@ -56,6 +52,7 @@ const MainSection = () => {
                         age={item.age}
                         email={item.email}
                         handleDelete={(e) => handleDelete(item._id)}
+                        userId={item._id}
                     />
                 ))}
                 </tbody>

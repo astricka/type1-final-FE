@@ -38,6 +38,7 @@ const AddUser = () => {
 
     const formik = useFormik({
         initialValues: { ...initInputs },
+        enableReinitialize: true,
         validationSchema: Yup.object({
             name: Yup.string().min(3).max(30).required(),
             age: Yup.string().max(3).required(),
@@ -77,7 +78,7 @@ const AddUser = () => {
                     />
                 ))}
                 <Button type={'submit'}>Submit</Button>
-                <Button onClick={() => history.goBack()}>Go back</Button>
+                <Button type={'button'} onClick={() => history.goBack()}>Go back</Button>
             </form>
         </div>
     );
