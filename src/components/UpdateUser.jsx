@@ -8,22 +8,26 @@ import css from './UpdateUser.module.css';
 import { toast } from 'react-hot-toast';
 
 const formFields = [
-    { name: 'name', placeholder: 'Jūsų vardas', type: 'text' },
-    { name: 'age', placeholder: 'Jūsų amžius', type: 'text' },
-    { name: 'email', placeholder: 'Jūsų elektroninis paštas', type: 'text' },
-    { name: 'password', placeholder: 'Jūsų slaptažodis', type: 'password' },
+    {name: 'name', placeholder: 'Jūsų vardas', type: 'text'},
+    {name: 'age', placeholder: 'Jūsų amžius', type: 'text'},
+    {name: 'email', placeholder: 'Jūsų elektroninis paštas', type: 'text'},
+    // {name: 'password', placeholder: 'Jūsų senas slaptažodis', type: 'password'},
+    {name: 'newPassword', placeholder: 'Jūsų naujas slaptažodis', type: 'password'},
+    {name: 'repeatPassword', placeholder: 'Pakartokite slaptažodį', type: 'password'},
 ];
 
 const initInputs = {
-    name: "",
-    age: "",
-    email: "",
-    password: "",
+    name: '',
+    age: '',
+    email: '',
+    password: '',
+    newPassword: '',
+    repeatPassword: '',
 };
 
 const UpdateUser = () => {
     const history = useHistory();
-    const { userId } = useParams();
+    const {userId} = useParams();
     const [singleUserData, setSingleUserData] = useState({});
 
     useEffect(() => {
@@ -49,6 +53,10 @@ const UpdateUser = () => {
             name: Yup.string().min(3).max(30),
             age: Yup.string().max(3),
             email: Yup.string().email(),
+            newPassword: Yup.string().min(5),
+            repeatPassword: Yup.string()
+                .min(5, 'minimum 4 characters')
+                .oneOf([Yup.ref('newPassword'), ''], 'Password should match'),
         }),
         onSubmit: (values) => {
             handleUpdate(values);
@@ -65,7 +73,7 @@ const UpdateUser = () => {
         });
         const data = await resp.json();
         if (data.message === 'Success') {
-            toast.success('Updated successfully')
+            toast.success('Updated successfully');
         }
     }
 
@@ -84,8 +92,8 @@ const UpdateUser = () => {
                         type={type}
                     />
                 ))}
-                <Button type={'submit'}>Submit</Button>
-                <Button type={'button'} onClick={() => history.goBack()}>Go back</Button>
+                <Button type={'submit'}>Pateikti</Button>
+                <Button type={'button'} onClick={() => history.goBack()}>Grįžti</Button>
             </form>
         </div>
     );

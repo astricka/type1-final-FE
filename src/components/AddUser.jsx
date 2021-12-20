@@ -14,6 +14,7 @@ const formFields = [
     { name: 'age', placeholder: 'Jūsų amžius', type: 'text' },
     { name: 'email', placeholder: 'Jūsų elektroninis paštas', type: 'text' },
     { name: 'password', placeholder: 'Jūsų slaptažodis', type: 'password' },
+    { name: 'repeatPassword', placeholder: 'Pakartokite slaptažodį', type: 'password' },
 ];
 
 const initInputs = {
@@ -21,6 +22,7 @@ const initInputs = {
     age: "",
     email: "",
     password: "",
+    repeatPassword: "",
 };
 
 const AddUser = () => {
@@ -44,6 +46,10 @@ const AddUser = () => {
             age: Yup.string().max(3).required(),
             email: Yup.string().email().required(),
             password: Yup.string().min(5).required(),
+            repeatPassword: Yup.string()
+                .min(5, 'minimum 4 characters')
+                .oneOf([Yup.ref('password'), ''], 'Password should match')
+                .required('required'),
         }),
         onSubmit: (values) => {
             postFetchForm(values);
@@ -78,8 +84,8 @@ const AddUser = () => {
                         type={type}
                     />
                 ))}
-                <Button type={'submit'}>Submit</Button>
-                <Button type={'button'} onClick={() => history.goBack()}>Go back</Button>
+                <Button type={'submit'}>Pateikti</Button>
+                <Button type={'button'} onClick={() => history.goBack()}>Grįžti</Button>
             </form>
         </div>
     );

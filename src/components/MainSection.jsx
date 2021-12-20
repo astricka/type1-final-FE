@@ -39,9 +39,9 @@ const MainSection = () => {
             <table>
                 <thead>
                     <tr className={css.tableHeader}>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Email</th>
+                        <th>Vardas</th>
+                        <th>Amžius</th>
+                        <th>Elektroninis paštas</th>
                     </tr>
                 </thead>
                 <tbody>

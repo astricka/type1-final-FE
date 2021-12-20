@@ -7,8 +7,8 @@ const Header = () => {
         <div className={css.headerContainer}>
             <img className={css.logo} src="usersTransparent.png" alt="logo"/>
             <nav className={css.linksContainer}>
-                <NavLink className={css.linkStyled} to={'/addUser'}>Add user</NavLink>
-                <NavLink className={css.linkStyled} to={'/'}>Home</NavLink>
+                <NavLink className={css.linkStyled} to={'/addUser'}>Pridėti vartotoją</NavLink>
+                <NavLink className={css.linkStyled} to={'/'}>Pagrindinis puslapis</NavLink>
             </nav>
         </div>
     );
