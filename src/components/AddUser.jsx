@@ -2,7 +2,6 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { postFetch } from '../utils/fetch';
 import * as Yup from 'yup';
-import { useState, useEffect } from 'react';
 import Input from './UI/Input';
 import { toast } from 'react-hot-toast';
 import { useHistory } from 'react-router-dom';
@@ -27,16 +26,6 @@ const initInputs = {
 
 const AddUser = () => {
     const history = useHistory();
-    const [response, setResponse] = useState([]);
-    // const [formSentSuccess, setFormSentSuccess] = useState(false);
-
-    useEffect(() => {
-        const errorObj = responseToError(response);
-        formik.setErrors(errorObj);
-        return () => {
-             return errorObj;
-        }
-    }, []);
 
     const formik = useFormik({
         initialValues: { ...initInputs },
@@ -60,12 +49,10 @@ const AddUser = () => {
         const data = await postFetch(values);
 
         if (data.error) {
-            setResponse(data.error);
             toast.error('Please check the form');
         }
         if (data.message) {
             toast.success(data.message);
-            // setFormSentSuccess(true);
         }
     }
 
@@ -92,10 +79,3 @@ const AddUser = () => {
 };
 
 export default AddUser;
-
-function responseToError(response) {
-    const arrayStructure = response.map((errObj) => ({
-        [errObj.field]: errObj.errorMsg,
-    }));
-    return Object.assign({}, ...arrayStructure);
-}
